@@ -3,7 +3,7 @@
 The purpose of this repo is to leverage ACI API inspector and turn change deployment into fully stacked API Automation.
 
 ## Layout
-
+'''
 ├── implementation
 │   ├── ansible.cfg
 │   ├── ap.yml
@@ -220,7 +220,7 @@ The purpose of this repo is to leverage ACI API inspector and turn change deploy
 ├── requirements.txt
 ├── template_variables.xlsx
 └── vault.txt
-
+'''
 
 ## Files
 
@@ -229,7 +229,7 @@ The main files are:
 1. ./template.menu.sh - copy/paste .xlxs spreadsheet content variables (no headings) and submit with Ctrl+D. This will invoke Jinja template generator that will output the variables in a format Ansible loop statements understand.
 2. Run Ansible plays with the following commands:
 
-> ansible-playbook ap.yml -i ../inventories/inventory.txt --tags="go"  --vault-password-file ../vault.txt --limit "sandboxapicdc.cisco.com,"
+> ***ansible-playbook ap.yml -i ../inventories/inventory.txt --tags="go"  --vault-password-file ../vault.txt --limit "sandboxapicdc.cisco.com,"***
 
 Note the tags, they vary dependent if you wish to deploy or rollback configuration. For the available tags explore main Ansible plays and see how they correspond to the respective roles/{{ role }}/tasks/main.yml files.
 
