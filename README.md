@@ -240,7 +240,7 @@ The main files are:
 > ***ansible-playbook ap.yml -i ../inventories/inventory.txt --tags="stop"  --vault-password-file ../vault.txt --limit "sandboxapicdc.cisco.com,"***
 
 Note the tags, they vary dependent if you wish to deploy or rollback configuration. For the available tags explore main Ansible plays and see how they correspond to the respective ***roles/{{ role }}/tasks/main.yml*** files.
-You can construct all ansible-playbooks statements into any wrapper of your choice, good example can be found here. In addition you can write up mor einteractive script that prompts you for a variety of variables and passes them onto ***--extra-vars (or -e)*** block (i.e. tenant, APIC hostname etc.)
+You can construct all ansible-playbooks statements into any wrapper of your choice, good example can be found here: ***[I'm an inline-style link](https://bash.cyberciti.biz/guide/Menu_driven_scripts)***. In addition you can write up mor einteractive script that prompts you for a variety of variables and passes them onto ***--extra-vars (or -e)*** block (i.e. tenant, APIC hostname etc.)
  
 ## Misc
 
