@@ -3,7 +3,7 @@
 The purpose of this repo is to leverage ACI API inspector and turn change deployment into fully stacked API Automation.
 
 ## Layout
-'''
+```bash
 ├── implementation
 │   ├── ansible.cfg
 │   ├── ap.yml
@@ -220,7 +220,7 @@ The purpose of this repo is to leverage ACI API inspector and turn change deploy
 ├── requirements.txt
 ├── template_variables.xlsx
 └── vault.txt
-'''
+```
 
 ## Files
 
