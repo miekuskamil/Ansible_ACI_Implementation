@@ -237,6 +237,7 @@ The main files are:
 2. Run Ansible plays with the following commands:
 
 > ***ansible-playbook ap.yml -i ../inventories/inventory.txt --tags="go"  --vault-password-file ../vault.txt --limit "sandboxapicdc.cisco.com,"***
+
 > ***ansible-playbook ap.yml -i ../inventories/inventory.txt --tags="stop"  --vault-password-file ../vault.txt --limit "sandboxapicdc.cisco.com,"***
 
 Note the tags, they vary dependent if you wish to deploy or rollback configuration. For the available tags explore main Ansible plays and see how they correspond to the respective ***roles/{{ role }}/tasks/main.yml*** files.
