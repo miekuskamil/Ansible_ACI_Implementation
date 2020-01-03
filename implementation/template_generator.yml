@@ -22,12 +22,31 @@
 
 
 
+       - name: Syntax checker - All in one
+         assert:
+           that:
+             - item.tenant is defined
+             - item.tenant | regex_search('common')
+             - item.bd | regex_search('\/24')
+             - item.app_prof | regex_search('^ap\_.*')
+             - item.name | regex_search('^epg\_.*')
+             - item.bd | regex_search('^bd\_(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/24')
+           fail_msg: "FAIL"
+           success_msg: "PASS"
+           quiet: true
+         loop: "{{ epg }}"
+         loop_control:
+             pause: 1
+
+           
+
        - name: Syntax checker - Tenant existence
          assert:
            that:
              - item.tenant is defined
            fail_msg: "Tenant not defined"
            success_msg: "Tenant defined"
+           quiet: true
          loop: "{{ epg }}"
          loop_control:
              pause: 1
@@ -40,6 +59,7 @@
              - item.tenant | regex_search('common')
            fail_msg: "Tenant common not defined"
            success_msg: "Tenant common defined"
+           quiet: true
          loop: "{{ epg }}"
          loop_control:
              pause: 1
@@ -52,6 +72,7 @@
              - item.bd | regex_search('\/24')
            fail_msg: "BD /24 not existient"
            success_msg: "BD /24 existient"
+           quiet: true
          loop: "{{ epg }}"
          loop_control:
              pause: 1
@@ -64,6 +85,7 @@
              - item.app_prof | regex_search('^ap\_.*')
            fail_msg: "App profile syntax not correct"
            success_msg: "App profile syntax correct"
+           quiet: true
          loop: "{{ epg }}"
          loop_control:
              pause: 1
@@ -76,6 +98,7 @@
              - item.name | regex_search('^epg\_.*')
            fail_msg: "EPG profile syntax not correct"
            success_msg: "EPG profile syntax correct"
+           quiet: true
          loop: "{{ epg }}"
          loop_control:
              pause: 1
@@ -87,12 +110,15 @@
              - item.bd | regex_search('^bd\_(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/24')
            fail_msg: "BD profile syntax not correct"
            success_msg: "BD profile syntax correct"
+           quiet: true
          loop: "{{ epg }}"
          loop_control:
              pause: 1
 
 
+
       ignore_errors: true
+#      no_log: True
       when: source == "epg"
 
 
