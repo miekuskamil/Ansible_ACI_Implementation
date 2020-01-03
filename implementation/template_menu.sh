@@ -18,7 +18,8 @@ printf '%s\n' "${arr[@]}" > template_input.csv
 ansible-playbook template_generator.yml --extra-vars "source=$template"
 
 sleep 1
-clear
+echo -ne "\n"
+
 while true; do
     read  -p "Do you wish to see variable file now? Yy/Nn: " yn
     case $yn in
@@ -27,4 +28,5 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
+
 rm template_input.csv
