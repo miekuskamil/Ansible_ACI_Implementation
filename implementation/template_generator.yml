@@ -25,7 +25,7 @@
        - name: Syntax checker - All in one
          assert:
            that:
-             - item.tenant is defined
+             - item.tenant != ""
              - item.tenant | regex_search('common')
              - item.bd | regex_search('\/24')
              - item.app_prof | regex_search('^ap\_.*')
@@ -43,7 +43,7 @@
        - name: Syntax checker - Tenant existence
          assert:
            that:
-             - item.tenant is defined
+             - item.tenant != ""
            fail_msg: "Tenant not defined"
            success_msg: "Tenant defined"
            quiet: true
