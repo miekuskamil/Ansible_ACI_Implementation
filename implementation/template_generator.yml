@@ -4,25 +4,36 @@
   gather_facts: false
   become: false
 
+
+
   vars:
     csvfile: "{{ lookup('file', 'template_input.csv') }}"
 
+
+
   tasks:
 
-    - name: Parse CSV To YAML
+
+
+    - name: parse csv to yaml
       template:
         src: "./roles/{{ source }}/templates/main.j2"
         dest: "./roles/{{ source }}/vars/main.yml"
       run_once: true
 
+
+
     - name: Block of {{ source }} tasks
+
       block:
-       - name: Call variables
+
+
+       - name: "call {{ source }} variables" 
          include_vars: ./roles/{{ source }}/vars/main.yml
 
 
 
-       - name: Syntax checker - All in one
+       - name: "{{ source }} syntax checker - single block"
          assert:
            that:
              - item.tenant != ""
@@ -40,7 +51,7 @@
 
            
 
-       - name: Syntax checker - Tenant existence
+       - name: "{{ source }} syntax checker - tenant existence"
          assert:
            that:
              - item.tenant != ""
@@ -53,7 +64,7 @@
 
 
 
-       - name: Syntax checker - Tenant "common" existience
+       - name: "{{ source }} syntax checker - tenant common existence"
          assert:
            that:
              - item.tenant | regex_search('common')
@@ -66,7 +77,7 @@
 
 
 
-       - name: Syntax checker - BD Subnet /24 existience
+       - name: "{{ source }} syntax checker - bd subnet /24 existence"
          assert:
            that:
              - item.bd | regex_search('\/24')
@@ -79,7 +90,7 @@
 
 
 
-       - name: Syntax checker - App Profile name
+       - name: "{{ source }} syntax checker - app profile name"
          assert:
            that:
              - item.app_prof | regex_search('^ap\_.*')
@@ -92,7 +103,7 @@
 
 
 
-       - name: Syntax checker - EPG Profile name
+       - name: "{{ source }} syntax checker - epg profile name"
          assert:
            that:
              - item.name | regex_search('^epg\_.*')
@@ -104,7 +115,7 @@
              pause: 1
 
 
-       - name: Syntax checker - BD name
+       - name: "{{ source }} syntax checker - bd name"
          assert:
            that:
              - item.bd | regex_search('^bd\_(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\/24')
